@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -33,9 +33,14 @@ Route::middleware(['auth'])->group(function (){
         return Inertia::render('Expenses');
     })->name('expenses');
 
-    Route::get('/categories', function () {
-        return Inertia::render('Categories');
-    })->name('categories');
+    Route::prefix('categories')->name('categories.')->group(function (){
+        Route::get('', [CategoryController::class, 'index'])->name('index');
+        Route::get('create', [CategoryController::class, 'create'])->name('create');
+        Route::post('', [CategoryController::class, 'store'])->name('store');
+//        Route::get('{category}', [CategoryController::class, 'edit'])->name('edit');
+//        Route::patch('{category}', [CategoryController::class, 'update'])->name('update');
+//        Route::delete('{category}', [CategoryController::class, 'delete'])->name('delete');
+    });
 
     Route::get('/new-ideas', function () {
         return Inertia::render('Todo/Ideas');
