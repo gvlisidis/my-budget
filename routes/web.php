@@ -14,18 +14,32 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//
+//Route::get('/', function () {
+//    return Inertia::render('Welcome', [
+//        'canLogin' => Route::has('login'),
+//        'canRegister' => Route::has('register'),
+//        'laravelVersion' => Application::VERSION,
+//        'phpVersion' => PHP_VERSION,
+//    ]);
+//});
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+Route::middleware(['auth'])->group(function (){
+    Route::get('/', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::get('/expenses', function () {
+        return Inertia::render('Expenses');
+    })->name('expenses');
+
+    Route::get('/categories', function () {
+        return Inertia::render('Categories');
+    })->name('categories');
+
+    Route::get('/new-ideas', function () {
+        return Inertia::render('Todo/Ideas');
+    })->name('new-ideas');
 });
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
