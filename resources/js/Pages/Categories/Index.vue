@@ -14,7 +14,7 @@ defineProps({
     <AuthenticatedLayout>
         <div class="py-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-md">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-md pb-6">
                     <div class="border-b-2 border-gray-400 flex items-center justify-between">
                         <p class="p-6 text-2xl font-semibold">Categories</p>
                         <div class="p-6">
@@ -23,7 +23,7 @@ defineProps({
                         </div>
                     </div>
                     <div>
-                       <div v-for="category in categories.data" :key="category.id" class="bg-white border-b border-gray-100 flex items-center justify-between">
+                       <div v-for="category in categories.data" :key="category.id" class="bg-white border-b border-gray-100 flex items-center justify-between hover:bg-gray-100">
                            <p
                                class="w-80 px-6 py-4 font-medium text-gray-900 flex items-center">
                            {{ category.name }}
@@ -37,9 +37,10 @@ defineProps({
                                    </a>
                            </div>
                        </div>
+                        <div class="flex justify-center">
+                            <Pagination class="mt-6" :links="categories.meta.links" />
+                        </div>
                     </div>
-                    <Pagination class="mt-6" :links="categories.meta.links" />
-
                 </div>
             </div>
         </div>
