@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link  } from '@inertiajs/inertia-vue3';
+import Pagination from "@/Components/Pagination.vue";
 
 defineProps({
     categories: Object
@@ -37,6 +38,8 @@ defineProps({
                            </div>
                        </div>
                     </div>
+                    <Pagination class="mt-6" :links="categories.meta.links" />
+
                 </div>
             </div>
         </div>

@@ -13,6 +13,8 @@ class Category extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    protected $with = ['keyword'];
+
     public function expenses(): HasMany
     {
         return $this->hasMany(Expense::class);

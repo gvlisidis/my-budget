@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\CategoryCollection;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CategoryController extends Controller
@@ -13,7 +12,7 @@ class CategoryController extends Controller
     public function index()
     {
         return Inertia::render('Categories/Index', [
-            'categories' => CategoryResource::collection(Category::with('keyword')->get()),
+            'categories' => new CategoryCollection(Category::paginate(20)),
         ]);
     }
 
