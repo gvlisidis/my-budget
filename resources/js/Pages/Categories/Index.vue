@@ -29,8 +29,8 @@ defineProps({
                            {{ category.name }}
                            </p>
                            <div class="py-4 px-6 flex items-center space-x-4">
-                               <a href="#"
-                                  class="font-medium bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md">Edit</a>
+                               <Link :href="route('categories.edit', category)"
+                                  class="font-medium bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md">Edit</Link>
                                    <a href="#"
                                            class="font-medium bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md">
                                        Delete

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\KeywordController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -37,9 +38,14 @@ Route::middleware(['auth'])->group(function (){
         Route::get('', [CategoryController::class, 'index'])->name('index');
         Route::get('create', [CategoryController::class, 'create'])->name('create');
         Route::post('', [CategoryController::class, 'store'])->name('store');
-//        Route::get('{category}', [CategoryController::class, 'edit'])->name('edit');
-//        Route::patch('{category}', [CategoryController::class, 'update'])->name('update');
+        Route::get('{category}', [CategoryController::class, 'edit'])->name('edit');
+        Route::patch('{category}', [CategoryController::class, 'update'])->name('update');
 //        Route::delete('{category}', [CategoryController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('keywords')->name('keywords.')->group(function (){
+        Route::post('', [KeywordController::class, 'store'])->name('store');
+//        Route::delete('{keyword}', [KeywordController::class, 'delete'])->name('delete');
     });
 
     Route::get('/new-ideas', function () {
